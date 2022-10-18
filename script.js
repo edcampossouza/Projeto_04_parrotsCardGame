@@ -11,6 +11,11 @@ const parrots = [
 
 const opcoes = {};
 const arrayImagens = [];
+let cartaVirada = null;
+let numeroJogadas = 0;
+const cartasDescobertas = [];
+//controla se estah escutando os cliques
+let jogando = true;
 const container = document.querySelector(".container");
 
 function selecionaNumeroCartas() {
@@ -51,7 +56,7 @@ function carregaCartas() {
     card.appendChild(verso);
 
     card.onclick = function () {
-      viraCarta(card);
+      clicaCarta(card);
     };
 
     container.appendChild(card);
@@ -72,6 +77,41 @@ function inicializaCartas() {
   carregaCartas();
 }
 
+function clicaCarta(carta) {
+  if (cartasDescobertas.find((c) => c === carta)) {
+    return;
+  }
+  if (!jogando) return;
+  if (cartaVirada === null) {
+    viraCarta(carta);
+    cartaVirada = carta;
+    numeroJogadas++;
+    return;
+  } else if (cartaVirada === carta) {
+    return;
+  }
+  const src = carta.querySelector(".back-face img").src;
+  const srcVirado = cartaVirada.querySelector(".back-face img").src;
+  numeroJogadas++;
+  viraCarta(carta);
+  jogando = false;
+  setTimeout(function () {
+    if (src === srcVirado) {
+      cartasDescobertas.push(cartaVirada);
+      cartasDescobertas.push(carta);
+      if (cartasDescobertas.length === opcoes.numeroCartas) {
+        finalizaJogo();
+      }
+      cartaVirada = null;
+    } else {
+      viraCarta(carta);
+      viraCarta(cartaVirada);
+      cartaVirada = null;
+    }
+    jogando = true;
+  }, 1000);
+}
+
 function viraCarta(carta) {
   const back = carta.querySelector(".back-face");
   const front = carta.querySelector(".front-face");
@@ -79,6 +119,9 @@ function viraCarta(carta) {
   front.classList.toggle("hide");
 }
 
+function finalizaJogo() {
+  alert(`Voce venceu em ${numeroJogadas} jogadas`);
+}
 //inicio script
 
 selecionaNumeroCartas();

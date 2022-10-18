@@ -120,7 +120,7 @@ function viraCarta(carta) {
 }
 
 function finalizaJogo() {
-  alert(`Voce venceu em ${numeroJogadas} jogadas`);
+  alert(`Você ganhou em ${numeroJogadas} jogadas!`);
 }
 //inicio script
 

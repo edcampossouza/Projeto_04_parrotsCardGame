@@ -1,35 +1,64 @@
+body {
+  background-color: #eef9bf;
+  color: #75b79e;
+  font-size: 56px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+h2 {
+  text-align: center;
+}
 
-
-
+.card {
+  width: 200px;
+  height: 250px;
+  position: relative;
+}
 .face {
-    width: 100%;
-    height: 100%;
-    background-color: #a7e9af;
-    border-radius: 10px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    backface-visibility: hidden;
-    transition: all 0.5s;
-    transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  background-color: #a7e9af;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: all 0.5s;
+  transform-style: preserve-3d;
+}
+
+/* codigo para rotacionar a card: */
+/* https://repl.it/@BootcampRespond/FlippedCards#index.html */
+.back-face {
+  transform: rotateY(180deg);
+}
+
+.back-face.show {
+  transform: rotateY(0deg);
+}
+
+.front-face.hide {
+  transform: rotateY(-180deg);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+}
+
+@media screen and (max-width: 614px) {
+  .container {
+    flex-direction: column;
   }
-
-
-  /* codigo para rotacionar a card: */
-  /* https://repl.it/@BootcampRespond/FlippedCards#index.html */
-  .back-face {
-    transform: rotateY(180deg);
-  }
-
-  .back-face.show {
-    transform: rotateY(0deg);
-  }
-
-  .front-face.hide {
-    transform: rotateY(-180deg);
-  }
-
-  /* */
+}
+/* */

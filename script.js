@@ -9,12 +9,12 @@ const parrots = [
   "unicornparrot.gif",
 ];
 
-const opcoes = {};
+let numeroCartas;
 const arrayImagens = [];
 let cartaVirada = null;
 let numeroJogadas = 0;
 const cartasDescobertas = [];
-//controla se estah escutando os cliques
+//controla se está escutando os cliques
 let jogando = true;
 const container = document.querySelector(".container");
 
@@ -26,7 +26,7 @@ function selecionaNumeroCartas() {
     if (Number.isNaN(num)) num = 0;
   }
 
-  opcoes.numeroCartas = num;
+  numeroCartas = num;
 }
 
 function carregaCartas() {
@@ -64,7 +64,7 @@ function carregaCartas() {
 }
 
 function inicializaCartas() {
-  for (let i = 0; i < opcoes.numeroCartas / 2; i++) {
+  for (let i = 0; i < numeroCartas / 2; i++) {
     arrayImagens.push(parrots[i]);
     arrayImagens.push(parrots[i]);
   }
@@ -99,7 +99,7 @@ function clicaCarta(carta) {
     if (src === srcVirado) {
       cartasDescobertas.push(cartaVirada);
       cartasDescobertas.push(carta);
-      if (cartasDescobertas.length === opcoes.numeroCartas) {
+      if (cartasDescobertas.length === numeroCartas) {
         finalizaJogo();
       }
       cartaVirada = null;

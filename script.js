@@ -1,4 +1,3 @@
-const baseImagens = "./imagens/";
 const parrots = [
   "bobrossparrot.gif",
   "explodyparrot.gif",
